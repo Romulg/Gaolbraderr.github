@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Situs pribadi Gaolbrader. Menampilkan portofolio, profil, dan cara menghubungi.">
+    <title>Gaolbrader - Situs Pribadi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Gaolbrader</h1>
+        <p>Selamat datang di situs pribadi saya!</p>
+    </header>
+
+    <!-- Navigasi -->
+    <nav>
+        <ul>
+            <li><a href="#tentang">Tentang Saya</a></li>
+            <li><a href="#portofolio">Portofolio</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Tentang Saya -->
+    <section id="tentang">
+        <h2>Tentang Saya</h2>
+        <p>Halo! Nama saya Gaolbrader, seorang pengembang web yang bersemangat untuk menciptakan solusi digital yang inovatif. Saya memiliki pengalaman dalam berbagai bahasa pemrograman, termasuk HTML, CSS, JavaScript, dan PHP. Selain coding, saya juga menyukai desain grafis dan belajar tentang teknologi baru.</p>
+    </section>
+
+    <!-- Portofolio -->
+    <section id="portofolio">
+        <h2>Portofolio</h2>
+        <p>Berikut beberapa proyek yang saya kerjakan:</p>
+        <ul>
+            <li><strong>Proyek Web A:</strong> Deskripsi proyek A yang melibatkan pengembangan situs e-commerce dengan fitur pembayaran online.</li>
+            <li><strong>Proyek Web B:</strong> Deskripsi proyek B yang berfokus pada pengembangan aplikasi web berbasis ReactJS.</li>
+            <li><strong>Proyek Web C:</strong> Deskripsi proyek C tentang desain dan pengembangan situs portofolio pribadi menggunakan HTML dan CSS.</li>
+        </ul>
+    </section>
+
+    <!-- Kontak -->
+    <section id="kontak">
+        <h2>Kontak</h2>
+        <p>Jika Anda ingin menghubungi saya, Anda dapat mengirim email ke: <a href="mailto:gaolbrader@email.com">gaolbrader@email.com</a></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Gaolbrader. Semua hak cipta dilindungi.</p>
+    </footer>
+
+</body>
+</html>
+<style>/* Gaya umum untuk halaman */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+nav {
+    background-color: #007bff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+section {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    color: #007bff;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+
+public class WebScraper {
+    public static void main(String[] args) {
+        String url = "http://www.gaolbrader.com";  // URL yang ingin Anda scraping
+        try {
+            // Mengambil dokumen HTML dari URL
+            Document doc = Jsoup.connect(url).get();
+            
+            // Menampilkan judul halaman
+            System.out.println("Title: " + doc.title());
+            
+            // Mengambil semua elemen dengan tag <a> (tautan)
+            Elements links = doc.select("a");
+            for (Element link : links) {
+                System.out.println("Link: " + link.attr("href"));
+                System.out.println("Text: " + link.text());
+            }
+            
+            // Menampilkan elemen tertentu jika diinginkan, misalnya div dengan class tertentu
+            Elements divs = doc.select("div.class-name");  // Ganti class-name dengan kelas yang sesuai
+            for (Element div : divs) {
+                System.out.println("Div content: " + div.text());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
